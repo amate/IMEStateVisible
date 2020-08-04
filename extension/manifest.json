@@ -1,0 +1,30 @@
+{
+    "manifest_version": 2,
+    "name": "IME State Visible",
+    "version": "1.0",
+    "description": "See the IME of state",
+    "icons": { 
+        "16": "images/marker16.png",
+        "48": "images/marker48.png",
+       "128": "images/marker128.png" 
+    },
+
+    "permissions": ["storage", "nativeMessaging"],
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+      },
+
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "32": "images/marker32.png"
+        }
+    },
+
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*" ],
+        "js": ["jquery-3.5.1.min.js", "content.js"]
+    }]
+}

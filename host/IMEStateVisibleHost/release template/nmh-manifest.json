@@ -1,0 +1,9 @@
+{
+  "name": "imestatevisiblehost",
+  "description": "My Application",
+  "path": "IMEStateVisibleHost.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://bgdamfoeofehnfnpbnbjjkhkpmnhbpic/"
+  ]
+}
