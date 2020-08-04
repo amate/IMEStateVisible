@@ -1,5 +1,7 @@
 # IMEStateVisible
 
+![](https://raw.githubusercontent.com/amate/IMEStateVisible/images/images/ss1.jpg)
+
 ## ■はじめに
 このChrome拡張は、IMEがオン(日本語入力)時に、テキスト入力欄の背景色を変更することによって、間違えて英文字モードでローマ字を打ってしまうのを防ぐために作られました
 
