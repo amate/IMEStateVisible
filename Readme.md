@@ -7,9 +7,9 @@
 
 ## ■動作確認環境
 ・Windows 10 home 64bit バージョン 1903  
-・vivaldi
-・Microsoft Edge
-chromeは導入していないので分からないが、おそらく動作するはず…
+・vivaldi  
+・Microsoft Edge  
+chromeは導入していないので分からないが、おそらく動作するはず…  
 
 ## ■導入方法
 
