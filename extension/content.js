@@ -23,11 +23,11 @@ function ObserveInputElementFocus(searchElement)
     //console.log("textInputArray.length: " + textInputArray.length);
     textInputArray.forEach(element => {
         element.addEventListener("focus", event => {
-            //console.log("focus!");
+            //console.log("focus!", element.value);
             SendMessageToBackground("focus", element);
         });
         element.addEventListener("blur", event => {
-            //console.log("blur!");
+            //console.log("blur!", element.value);
             SendMessageToBackground("blur", element);
         });
     });
@@ -79,6 +79,12 @@ chrome.storage.sync.get({IMEWatchEnable: true}, function(value) {
 // background.jsへIMEの状態を調べてもらう
 function SendMessageToBackground(event, element)
 {
+    if (event == "blur") {
+        $(element).css('background-color', '');
+        $(element).css('color', '');
+        return;
+    }
+
     lastEvent = event;
     lastFocusElement = element;
     chrome.runtime.sendMessage({
@@ -94,11 +100,14 @@ function ResponseProcessing(response)
     if (lastEvent == "focus") {
         if (response.IMEEnabled) {            
              $(lastFocusElement).css('background-color', response.BackgroundColor);
+             $(lastFocusElement).css('color', response.TextColor);
         } else {
             $(lastFocusElement).css('background-color', '');
+            $(lastFocusElement).css('color', '');
         }
     } else if (lastEvent == "blur") {
         $(lastFocusElement).css('background-color', '');
+        $(lastFocusElement).css('color', '');
         lastFocusElement = null;
     }
 }

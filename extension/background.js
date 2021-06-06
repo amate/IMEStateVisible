@@ -6,6 +6,7 @@ var nativeHostPort = null;
 var config =   {
   IMEWatchEnable: true, 
   BackgroundColor: "#CCFFCC",
+  TextColor: "#000000"
 };
 
 chrome.storage.sync.get(config, function(value) {
@@ -26,6 +27,7 @@ nativeHostPort.onMessage.addListener(function(msg) {
   }
 
   msg.BackgroundColor = config.BackgroundColor;
+  msg.TextColor = config.TextColor;
 
   if (contentScriptCallback != null) {
     contentScriptCallback(msg);

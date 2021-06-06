@@ -4,13 +4,14 @@
 chrome.storage.sync.get(
   {
     IMEWatchEnable: true, 
-    BackgroundColor: "#CCFFCC"
+    BackgroundColor: "#CCFFCC",
+    TextColor: "#000000"
   }, function(value) {
   console.log(value);
 
   $('#IMEWatchEnableSwitch').prop('checked', value.IMEWatchEnable);
 
-  BGColorChange(value.BackgroundColor);
+  BGColorChange(value.BackgroundColor, value.TextColor);
 });
 chrome.storage.local.get({ConnectNativeSucceeded: true}, function(value) {
   if (!value.ConnectNativeSucceeded) {
@@ -30,13 +31,25 @@ $(document).ready(function(){
 
 $('#ColorPicker').change(function() {  
   console.log( $(this).val() );
-  BGColorChange($(this).val());
+  BGColorChange($(this).val(), $('#TextRGB').val());
 
 });
 
 $('#BackgroundRGB').keyup(function() {
   console.log( $(this).val() );
-  BGColorChange($(this).val());
+  BGColorChange($(this).val(), $('#TextRGB').val());
+
+});
+
+$('#TextColorPicker').change(function() {  
+  console.log( $(this).val() );
+  BGColorChange($('#BackgroundRGB').val(), $(this).val());
+
+});
+
+$('#TextRGB').keyup(function() {
+  console.log( $(this).val() );
+  BGColorChange($('#BackgroundRGB').val(), $(this).val());
 
 });
 
@@ -51,13 +64,20 @@ $('#IMEWatchEnableSwitch').change(function() {
 });
 
 // 背景色変更
-function BGColorChange(color)
+function BGColorChange(color, textColor)
 {
   $('#InputSample').css("background-color", color);
   $('#BackgroundRGB').val(color);
   $('#ColorPicker').val(color);
 
-  chrome.storage.sync.set({'BackgroundColor': color}, function() {
+  $('#InputSample').css("color", textColor);
+  $('#TextRGB').val(textColor);
+  $('#TextColorPicker').val(textColor);
+
+  chrome.storage.sync.set({
+    'BackgroundColor': color,
+    'TextColor': textColor
+  }, function() {
     UpdateConfig();
   });
 }

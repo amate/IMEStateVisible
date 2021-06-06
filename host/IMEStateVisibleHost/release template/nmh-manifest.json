@@ -4,6 +4,8 @@
   "path": "IMEStateVisibleHost.exe",
   "type": "stdio",
   "allowed_origins": [
-    "chrome-extension://bgdamfoeofehnfnpbnbjjkhkpmnhbpic/"
+    "chrome-extension://bgdamfoeofehnfnpbnbjjkhkpmnhbpic/",
+    "chrome-extension://goehajdkeooplchdlhdlglnmfjndhgfh/",
+    "chrome-extension://mnbmnhpnniahlicddcllehggdjglfkeh/"    
   ]
 }

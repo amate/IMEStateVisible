@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "IME State Visible",
-    "version": "1.0",
+    "version": "1.1",
     "description": "See the IME of state",
     "icons": { 
         "16": "images/marker16.png",
