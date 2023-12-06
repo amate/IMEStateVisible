@@ -40,13 +40,19 @@ https://icooon-mono.com/
 
 
 ## ■著作権表示
-Copyright (C) 2020 amate
+Copyright (C) 2020-2023 amate
 
 私が書いた部分のソースコードは、MIT License とします。
 
 ## ■更新履歴
 
 <pre>
+
+v1.1.2
+・[change] manifest v3へ移行
+・[add] inputのtypeがemail、telの場合でも背景色変更を行うようにした
+・[add] iframe内のinput、textareaにも背景色変更を行うようにした
+
 
 v1.1.1
 ・[fix] 背景色のプリセットが消えていたのを修正

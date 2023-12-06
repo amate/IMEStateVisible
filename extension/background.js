@@ -34,7 +34,13 @@ nativeHostPort.onMessage.addListener(function(msg) {
     contentScriptCallback = null;
   } else {
     chrome.tabs.query( {active:true, currentWindow:true}, function(tabs){
-      chrome.tabs.sendMessage(tabs[0].id, msg);
+      if (tabs.length == 0) {
+        return ;
+      }
+      let promise = chrome.tabs.sendMessage(tabs[0].id, msg);
+      promise.catch((error) => {
+        //console.log(error);
+      });
     });
   }
 });
@@ -54,6 +60,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
       if (config.IMEWatchEnable) {
         chrome.tabs.query( {active:true, currentWindow:true}, function(tabs){
+          if (tabs.length == 0) {
+            return ;
+          }
           chrome.tabs.sendMessage(tabs[0].id, {StartObserve: true});
         });
       }

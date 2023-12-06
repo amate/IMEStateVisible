@@ -1,7 +1,7 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "IME State Visible",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "See the IME of state",
     "icons": { 
         "16": "images/marker16.png",
@@ -12,11 +12,10 @@
     "permissions": ["storage", "nativeMessaging"],
 
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false
+        "service_worker": "background.js"
       },
 
-    "browser_action": {
+    "action": {
         "default_popup": "popup.html",
         "default_icon": {
             "32": "images/marker32.png"

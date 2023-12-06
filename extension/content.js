@@ -7,7 +7,7 @@ var isStartObserving = false;
 
 function IsTextInputElement(element)
 {
-    if ((element.tagName == "INPUT" && (element.type == "text" || element.type == "search")) 
+    if ((element.tagName == "INPUT" && (element.type == "text" || element.type == "search" || element.type == "email"  || element.type == "tel")) 
         || element.tagName == "TEXTAREA") 
     {
         return true;
@@ -19,7 +19,11 @@ function IsTextInputElement(element)
 
 function ObserveInputElementFocus(searchElement)
 {
-    let textInputArray = searchElement.querySelectorAll("textarea,input[type=text],input[type=search]");
+    if (!searchElement) {
+        return ;
+    }
+
+    let textInputArray = searchElement.querySelectorAll("textarea,input[type=text],input[type=search],input[type=email],input[type=tel]");
     //console.log("textInputArray.length: " + textInputArray.length);
     textInputArray.forEach(element => {
         element.addEventListener("focus", event => {
@@ -48,6 +52,15 @@ function StartTextInputFocusObserve()
     }, 1000);
 
     ObserveInputElementFocus(document);
+
+    // iframe
+    for (let iframeElm of document.getElementsByTagName('iframe')) {
+        if (iframeElm.contentDocument !== null) {
+            // console.log("ok!");
+            // console.log(iframeElm.contentDocument);
+            ObserveInputElementFocus(iframeElm.contentDocument);
+        }
+    }
 
     // 動的に追加される要素を監視する
     let observer = new MutationObserver(mutationRecords => {
